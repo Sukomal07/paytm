@@ -4,7 +4,8 @@
   "private": true,
   "exports": {
     "./button": "./src/button.tsx",
-    "./Appbar": "./src/components/Appbar.tsx"
+    "./Appbar": "./src/components/Appbar.tsx",
+    "./card": "./src/card.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

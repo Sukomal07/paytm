@@ -35,7 +35,7 @@ const signin = () => {
             toast.error(res.error)
         }
         if (res?.ok) {
-            router.replace("/")
+            router.replace("/dashboard")
             reset()
             toast.success("Log in success")
         }

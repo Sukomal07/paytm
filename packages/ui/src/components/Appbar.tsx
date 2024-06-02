@@ -12,7 +12,7 @@ export const Appbar = ({ status, onSignin, onSignout }: AppbarProps) => {
             <h1 className="text-2xl font-semibold">Paytm</h1>
             <Button onClick={status === "authenticated" ? onSignout : onSignin} className=" bg-blue-700 hover:bg-blue-500 text-white text-base py-2 px-4 rounded-md disabled:bg-blue-400">
                 {
-                    status === "authenticated" ? "Log out" : "Log in"
+                    status === "authenticated" ? "Logout" : "Login"
                 }
             </Button>
         </div>
