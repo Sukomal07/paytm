@@ -40,7 +40,7 @@ export default function Addmoney() {
             window.location.href = redirectUrl
         }
     };
-    console.log(amount)
+
     return (
         <Card title='Add Money'>
             <div className='flex flex-col gap-3 h-full justify-center'>
