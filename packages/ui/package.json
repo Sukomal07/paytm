@@ -5,7 +5,9 @@
   "exports": {
     "./button": "./src/button.tsx",
     "./Appbar": "./src/components/Appbar.tsx",
-    "./card": "./src/card.tsx"
+    "./card": "./src/card.tsx",
+    "./textInput": "./src/textInput.tsx",
+    "./selectInput": "./src/selectInput.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

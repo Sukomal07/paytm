@@ -9,7 +9,7 @@ interface BalanceProps {
 export default function BalanceCard({ amount, locked }: BalanceProps) {
     return (
         <Card title='Balance'>
-            <div className='flex flex-col gap-3'>
+            <div className='flex flex-col gap-3 h-full justify-center space-y-6'>
                 <div className='flex justify-between border-b border-slate-300'>
                     <h1 className='text-blue-500 font-semibold'>Unlocked balance</h1>
                     <h3 className='text-green-500 text-lg font-semibold'>{amount / 100} &#8377;</h3>
