@@ -8,7 +8,7 @@ export default function layout({ children }: {
     return (
         <div className='flex flex-col h-screen w-screen'>
             <AppbarClient />
-            <div className='flex h-full w-full'>
+            <div className='flex h-full w-full overflow-hidden'>
                 <Sidebar />
                 {children}
             </div>

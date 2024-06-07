@@ -4,6 +4,7 @@ import { Card } from '@repo/ui/card'
 import { TextInput } from '@repo/ui/textInput'
 import { SelectInput } from '@repo/ui/selectInput'
 import { Button } from '@repo/ui/button'
+import createOnrampTransaction from '../lib/actions/createOnrampTransaction'
 
 const SUPPORTED_BANKS = [
     {
@@ -21,23 +22,26 @@ const SUPPORTED_BANKS = [
 ];
 
 export default function Addmoney() {
-    const [amount, setAmount] = useState("");
+    const [amount, setAmount] = useState(0);
     const [redirectUrl, setRedirectUrl] = useState(SUPPORTED_BANKS[0]?.redirectUrl);
+    const [provider, setProvider] = useState("")
 
     const handleBankSelect = (selectedBankName: string) => {
         const selectedBank = SUPPORTED_BANKS.find(bank => bank.name === selectedBankName);
         if (selectedBank) {
+            setProvider(selectedBank.name)
             setRedirectUrl(selectedBank.redirectUrl);
         }
     };
 
     const handleAmountChange = (value: string) => {
-        setAmount(value);
+        setAmount(Number(value));
     };
 
-    const handleClick = () => {
+    const handleClick = async () => {
         if (redirectUrl) {
             window.location.href = redirectUrl
+            await createOnrampTransaction(amount, provider)
         }
     };
 

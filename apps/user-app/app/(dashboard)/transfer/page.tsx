@@ -41,7 +41,7 @@ export default async function page() {
     const transactions = await getOnRampTransactions()
 
     return (
-        <div className='flex-1 py-3 px-6 flex flex-col gap-10'>
+        <div className='flex-1 py-3 px-6 flex flex-col gap-10 overflow-y-auto'>
             <h1 className='text-slate-700 text-xl font-semibold text-center'>Transfer Money</h1>
             <div className='h-full flex flex-col space-y-3'>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>

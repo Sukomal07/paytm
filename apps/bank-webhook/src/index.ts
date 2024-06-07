@@ -10,7 +10,7 @@ interface PaymentInformation {
     amount: string;
 }
 
-app.post('/hdfcwebhook', async (req, res) => {
+app.post('/webhook', async (req, res) => {
     const { token, userId, amount }: PaymentInformation = req.body
     if (!token || !userId || !amount) {
         return res.status(400).json({
@@ -20,11 +20,15 @@ app.post('/hdfcwebhook', async (req, res) => {
 
     try {
         await db.$transaction([
-            db.balance.updateMany({
+            db.balance.upsert({
                 where: {
                     userId: Number(userId)
                 },
-                data: {
+                create: {
+                    userId: Number(userId),
+                    amount: Number(amount)
+                },
+                update: {
                     amount: {
                         increment: Number(amount)
                     }
@@ -50,5 +54,7 @@ app.post('/hdfcwebhook', async (req, res) => {
     }
 })
 
-app.listen(3003)
+app.listen(3003, () => {
+    console.log("App is running")
+})
 

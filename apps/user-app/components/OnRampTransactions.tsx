@@ -19,19 +19,19 @@ export default function OnRampTransactions({ transactions }: TransactionsProps) 
                         No Recent transactions
                     </h1>
                 ) : (
-                    <div className='pt-2 flex flex-col gap-5'>
+                    <div className='py-4 flex flex-col gap-5'>
                         {
                             transactions.map((transaction) => (
                                 <div className='flex justify-between items-center'>
                                     <div className='flex flex-col gap-2'>
-                                        <h2>Received</h2>
-                                        <span className="text-slate-600 text-xs">
+                                        <h2 className='text-base text-gray-600 font-semibold'>Received</h2>
+                                        <span className="text-slate-500 text-xs font-thin">
                                             {transaction.time.toDateString()}
                                         </span>
                                     </div>
                                     <div>
-                                        <span>
-                                            + {transaction.amount / 100}&#8377;
+                                        <span className='text-green-600 text-base font-thin'>
+                                            + &#8377;{transaction.amount / 100}
                                         </span>
                                     </div>
                                 </div>
