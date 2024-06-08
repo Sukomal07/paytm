@@ -25,12 +25,12 @@ export default function OnRampTransactions({ transactions }: TransactionsProps) 
                                 <div className='flex justify-between items-center'>
                                     <div className='flex flex-col gap-2'>
                                         <h2 className='text-base text-gray-600 font-semibold'>Received</h2>
-                                        <span className="text-slate-500 text-xs font-thin">
+                                        <span className="text-slate-500 text-xs">
                                             {transaction.time.toDateString()}
                                         </span>
                                     </div>
                                     <div>
-                                        <span className='text-green-600 text-base font-thin'>
+                                        <span className='text-green-600 text-base'>
                                             + &#8377;{transaction.amount / 100}
                                         </span>
                                     </div>

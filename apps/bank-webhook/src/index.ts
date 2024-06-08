@@ -1,5 +1,5 @@
 import express from 'express'
-import db from '@repo/db/client'
+import prisma from '@repo/db/client'
 
 const app = express()
 
@@ -19,8 +19,8 @@ app.post('/webhook', async (req, res) => {
     }
 
     try {
-        await db.$transaction([
-            db.balance.upsert({
+        await prisma.$transaction([
+            prisma.balance.upsert({
                 where: {
                     userId: Number(userId)
                 },
@@ -34,9 +34,11 @@ app.post('/webhook', async (req, res) => {
                     }
                 }
             }),
-            db.onRampTransaction.updateMany({
+            prisma.onRampTransaction.update({
                 where: {
-                    token: token
+                    token: token,
+                    status: "Processing",
+                    amount: Number(amount)
                 },
                 data: {
                     status: "Success"
@@ -57,4 +59,3 @@ app.post('/webhook', async (req, res) => {
 app.listen(3003, () => {
     console.log("App is running")
 })
-

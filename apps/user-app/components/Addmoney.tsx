@@ -5,6 +5,7 @@ import { TextInput } from '@repo/ui/textInput'
 import { SelectInput } from '@repo/ui/selectInput'
 import { Button } from '@repo/ui/button'
 import createOnrampTransaction from '../lib/actions/createOnrampTransaction'
+import updateBalance from '../lib/actions/updateBalance'
 
 const SUPPORTED_BANKS = [
     {
@@ -40,8 +41,11 @@ export default function Addmoney() {
 
     const handleClick = async () => {
         if (redirectUrl) {
+            const res = await createOnrampTransaction(amount, provider)
+            if (res.transaction) {
+                await updateBalance(res.transaction.token, res.transaction.amount)
+            }
             window.location.href = redirectUrl
-            await createOnrampTransaction(amount, provider)
         }
     };
 
