@@ -23,7 +23,7 @@ const SUPPORTED_BANKS = [
 ];
 
 export default function Addmoney() {
-    const [amount, setAmount] = useState(0);
+    const [amount, setAmount] = useState("");
     const [redirectUrl, setRedirectUrl] = useState(SUPPORTED_BANKS[0]?.redirectUrl);
     const [provider, setProvider] = useState("")
 
@@ -36,12 +36,12 @@ export default function Addmoney() {
     };
 
     const handleAmountChange = (value: string) => {
-        setAmount(Number(value));
+        setAmount(value);
     };
 
     const handleClick = async () => {
         if (redirectUrl) {
-            const res = await createOnrampTransaction(amount, provider)
+            const res = await createOnrampTransaction(Number(amount), provider)
             if (res.transaction) {
                 await updateBalance(res.transaction.token, res.transaction.amount)
             }
@@ -52,7 +52,7 @@ export default function Addmoney() {
     return (
         <Card title='Add Money'>
             <div className='flex flex-col gap-3 h-full justify-center'>
-                <TextInput type='number' label='amount' placeholder='Enter Amount' onChange={handleAmountChange} />
+                <TextInput type='number' label='amount' value={amount} placeholder='Enter Amount' onChange={handleAmountChange} />
                 <SelectInput label='bank' onSelect={handleBankSelect} options={SUPPORTED_BANKS.map(bank => ({ key: bank.name, value: bank.name }))} />
                 <Button className=" bg-blue-700 hover:bg-blue-500 text-white text-base py-2 px-4 rounded-md disabled:bg-blue-400" onClick={handleClick} disabled={!redirectUrl || !amount || redirectUrl === ""}>
                     Add Money
