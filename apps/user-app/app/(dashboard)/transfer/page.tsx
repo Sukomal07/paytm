@@ -48,7 +48,7 @@ export default async function page() {
                     <div className=' border border-slate-400 rounded-md shadow-md p-4 transform transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer '>
                         <Addmoney />
                     </div>
-                    <div className=' border border-slate-400 rounded-md shadow-md p-4 transform transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer'>
+                    <div className='hidden md:block border border-slate-400 rounded-md shadow-md p-4 transform transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer'>
                         <BalanceCard amount={balance.amount} locked={balance.locked} />
                     </div>
                 </div>

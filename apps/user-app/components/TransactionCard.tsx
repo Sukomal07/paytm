@@ -19,7 +19,7 @@ export default function TransactionCard({ transactions }: TransactionCardProps) 
                         No Recent transactions
                     </h1>
                 ) : (
-                    <div className='py-4 flex flex-col gap-5'>
+                    <div className='py-4 mb-16 md:mb-0 flex flex-col gap-5'>
                         {
                             transactions.map((transaction) => (
                                 <div className='flex justify-between items-center'>

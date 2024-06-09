@@ -18,11 +18,11 @@ export default function SidebarItem({ href, title, icon }: SidebarProps) {
     }
 
     return (
-        <div className={`${selected ? "text-[#6a51a6]" : "text-slate-500"} cursor-pointer flex items-center space-x-2`} onClick={handleClick}>
+        <div className={`${selected ? "text-[#6d4eb7]" : "text-slate-500"} cursor-pointer flex flex-col md:flex-row items-center space-x-2`} onClick={handleClick}>
             <div>
                 {icon}
             </div>
-            <h3 className={`font-bold ${selected ? "text-[#6a51a6]" : "text-slate-500"}`}>
+            <h3 className={`font-bold hidden md:block ${selected ? "text-[#6d4eb7]" : "text-slate-500"}`}>
                 {title}
             </h3>
         </div>

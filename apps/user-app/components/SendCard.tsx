@@ -24,7 +24,7 @@ export default function SendCard() {
         }
     }
     return (
-        <div className='h-fit w-96 bg-gray-50 shadow-lg rounded-md py-6 px-6'>
+        <div className='h-fit w-80 md:w-96 bg-gray-50 shadow-lg rounded-md py-6 px-6'>
             <Card title='Send'>
                 <div className='flex flex-col gap-3 mb-2'>
                     <TextInput label='number' type='number' placeholder='Enter phone number' value={number} onChange={(value) => { setNumber(value) }} />
