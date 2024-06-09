@@ -26,14 +26,14 @@ export default async function page() {
         <div className='flex-1 h-full'>
             <h1 className='text-[#6b48bc] text-2xl font-bold p-4'>{`Hello ${session?.user?.name}`}</h1>
             <div className='flex flex-col gap-4 p-4'>
-                <div className='border border-slate-400 rounded-md shadow-md p-4 transform transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer'>
+                <div className='border border-slate-400 rounded-md shadow-md p-4 cursor-pointer'>
                     <BalanceCard amount={balance.amount} locked={balance.locked} />
                 </div>
-                <Button className=" bg-blue-700 hover:bg-blue-500 text-white text-base py-2 px-4 rounded-md disabled:bg-blue-400">
-                    <Link href={'/transfer'}>
+                <Link href={'/transfer'} className='mx-auto'>
+                    <Button className=" bg-blue-700 hover:bg-blue-500 text-white text-base py-2 px-4 rounded-md disabled:bg-blue-400">
                         Add Money
-                    </Link>
-                </Button>
+                    </Button>
+                </Link>
             </div>
 
         </div>
