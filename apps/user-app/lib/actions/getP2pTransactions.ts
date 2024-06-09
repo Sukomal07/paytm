@@ -6,33 +6,45 @@ import prisma from "@repo/db/client";
 
 export default async function getP2pTransactions() {
     const session = await getServerSession(authOptions);
-    if (!session?.user || !session.user?.id) {
-        return {
-            message: "Unauthenticate user"
-        }
-    }
 
-    const sentTransactions = await prisma.p2pTransfer.findMany({
+    const transactions = await prisma.p2pTransfer.findMany({
         where: {
-            fromUserId: session.user.id
+            OR: [
+                {
+                    fromUserId: Number(session?.user?.id)
+                },
+                {
+                    toUserId: Number(session?.user?.id)
+                }
+            ]
         },
         include: {
             fromUser: true,
             toUser: true
         }
-    });
+    })
 
-    const receiveTransactions = await prisma.p2pTransfer.findMany({
-        where: {
-            toUserId: session.user.id
-        },
-        include: {
-            fromUser: true,
-            toUser: true
+
+    return transactions.map((transaction) => {
+        if (transaction.fromUserId === session?.user?.id) {
+            return (
+                {
+                    time: transaction.timestamp,
+                    amount: transaction.amount,
+                    type: "DEBIT",
+                    userNumber: transaction.toUser.number
+                }
+            )
         }
-    });
-
-    const transactions = [...sentTransactions, ...receiveTransactions];
-
-    return transactions;
+        else {
+            return (
+                {
+                    time: transaction.timestamp,
+                    amount: transaction.amount,
+                    type: "CREDIT",
+                    userNumber: transaction.fromUser.number
+                }
+            )
+        }
+    })
 }
