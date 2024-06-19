@@ -22,7 +22,7 @@ export default async function p2pTransfer(to: string, amount: number) {
         if (!toUser) {
             throw new Error("Enter correct user number")
         }
-
+        //@ts-ignore
         await prisma.$transaction(async (tx) => {
             await tx.$queryRaw`SELECT * FROM "Balance" WHERE "userId" = ${Number(userId)} FOR UPDATE`;
             const fromBalance = await tx.balance.findUnique({
