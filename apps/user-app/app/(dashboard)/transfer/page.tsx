@@ -6,6 +6,13 @@ import prisma from '@repo/db/client'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../../../lib/auth'
 
+interface Transaction {
+    startTime: Date;
+    amount: number;
+    status: "Success" | "Failure" | "Processing";
+    provider: string;
+}
+
 async function getBalance() {
     const session = await getServerSession(authOptions)
     const balance = await prisma.balance.findFirst({
@@ -26,7 +33,7 @@ async function getOnRampTransactions() {
             userId: Number(session?.user?.id)
         }
     })
-    return transactions.map((transaction) => (
+    return transactions.map((transaction: Transaction) => (
         {
             time: transaction.startTime,
             amount: transaction.amount,
