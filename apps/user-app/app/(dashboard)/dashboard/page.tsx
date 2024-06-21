@@ -31,7 +31,7 @@ export default async function page() {
                 </div>
                 <Link href={'/transfer'} className='mx-auto'>
                     <Button className=" bg-blue-700 hover:bg-blue-500 text-white text-base py-2 px-4 rounded-md disabled:bg-blue-400">
-                        Add Moneyy
+                        Add Money
                     </Button>
                 </Link>
             </div>
